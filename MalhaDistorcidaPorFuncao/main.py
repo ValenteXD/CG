@@ -51,8 +51,8 @@ def desenha():
     global lastTime
     frameTime=time.time()-lastTime
     lastTime=time.time()
-    if frameTime==0:
-        frameTime=0.00001
+    frameTime=max(frameTime,0.001)
+    frameTime=min(frameTime,1)
     print("\033[H\033[J"+"%s fps"%str(1/frameTime))
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glPushMatrix()
@@ -60,7 +60,7 @@ def desenha():
     glRotatef(ar, 0, 1, 1)
     Paraboloide(25,25,-1,1,1,-1)
     glPopMatrix()
-    ar += 1
+    ar += 60*frameTime
 
 
 WINDOW_WIDTH = 800

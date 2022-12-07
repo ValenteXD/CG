@@ -77,15 +77,6 @@ def cone(n,r,h):
 def Piramide(n,r,h):
     base(n,r,-h/2)
     cone(n,r,h)
-    '''glBegin(GL_TRIANGLES)
-    i = 0
-    for face in faces:
-        # glColor3fv(cores[i])
-        for vertex in face:
-           glColor3fv(cores[vertex])
-           glVertex3fv(vertices[vertex])
-        i = i+1
-    glEnd()'''
 
 a = 0
 
@@ -111,12 +102,10 @@ def desenha():
     global frameTime
     global lastTime
     frameTime = (time.time()-lastTime)
-    if frameTime==0:
-        frameTime=0.001
-    elif frameTime>=1:
-        frameTime=0.9
+    frameTime=max(frameTime,0.001)
+    frameTime=min(frameTime,1)
     lastTime = time.time()
-    print("%s fps"%(1/frameTime))
+    print("\033[H\033[J"+"%s fps"%str(1/frameTime))
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glPushMatrix()
     glTranslatef(0,-5,0)

@@ -4,17 +4,6 @@ from OpenGL.GLU import *
 import time
 import math
 
-vertices = (
-    ( 1, -1,-1),
-    (-1, -1,-1),
-    ( 1, -1, 1),
-    (-1, -1, 1),
-    (0, 0.5, 0),
-    )
-
-
-
-#cores = ( (1,0,0),(1,1,0),(0,1,0),(0,1,1),(0,0,1),(1,0,1),(0.5,1,1),(1,0,0.5) )
 def interpola(init, final, prog):
     return init*(1-prog)+(final*prog)
 
@@ -41,9 +30,11 @@ def desenha():
     global lastTime
     global a
     frameTime = (time.time()-lastTime)
+    frameTime=max(frameTime,0.001)
+    frameTime=min(frameTime,1)
     lastTime = time.time()
-    a+=1
-    print("%s fps"%(1/frameTime))
+    a+=60*frameTime
+    print("\033[H\033[J"+"%s fps"%str(1/frameTime))
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glPushMatrix()
     glRotatef(a,0,1,0)
