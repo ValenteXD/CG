@@ -4,26 +4,38 @@ from OpenGL.GLU import *
 import time
 import math
 
+cores = ( (1,0,0),(1,1,0),(0,1,0),(0,1,1),(0,0,1),(1,0,1),(0.5,1,1),(1,0,0.5) )
+
 def interpola(init, final, prog):
     return init*(1-prog)+(final*prog)
 
-def circulo(n,r,x):
-    for i in range(n):
+def loopCor(i):
+    while i>7:
+        i-=7
+    glColor(cores[max(0,i)])
+
+def circulo(n,r,x,nextX,nextR):
+    glBegin(GL_TRIANGLE_STRIP)
+    for i in range(n+1):
+        loopCor(i)
         ang = interpola(0,math.pi*2,i/n)
         y = math.cos(ang)*r
         z = math.sin(ang)*r
-        glPushMatrix()
-        glBegin(GL_POINTS)
+        nextY = math.cos(ang)*nextR
+        nextZ = math.sin(ang)*nextR
         glVertex(x,y,z)
-        glEnd()
-        glPopMatrix()
+        glVertex(nextX,nextY,nextZ)
+    glEnd()
 
 def esfera(n,r):
     for i in range(n):
         ang = interpola(-math.pi/2,math.pi/2,i/n)
+        nextAng = interpola(-math.pi/2,math.pi/2,(i+1)/n)
         x = math.cos(ang)*r
         y = math.sin(ang)*r
-        circulo(n,x,y)
+        nextX = math.cos(nextAng)*r
+        nextY = math.sin(nextAng)*r
+        circulo(n,x,y,nextY,nextX)
 
 def desenha():
     global frameTime
@@ -38,7 +50,8 @@ def desenha():
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glPushMatrix()
     glRotatef(a,0,1,0)
-    esfera(50,5)
+    glRotatef(a,0,0,1)
+    esfera(35,5)
     glPopMatrix()
 
 WINDOW_WIDTH = 800
