@@ -6,3 +6,7 @@ Como usar:
 -Quando o ponto interativo ficar vermelho clique com o botão esquerdo do mouse e arraste para onde quiser
 
 -A curva (formada pelos pontos pretos) se adequará à posição dos pontos interativos
+# Executar
+google-chrome &lt;filename>.html
+ou
+firefox &lt;filename>.html

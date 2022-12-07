@@ -10,3 +10,5 @@ PyOpenGL
 PySDL2
 
 pysdl2-dll
+# Executar
+python3 ./prisma-piramide.py
