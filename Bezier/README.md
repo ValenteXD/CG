@@ -7,6 +7,6 @@ Como usar:
 
 -A curva (formada pelos pontos pretos) se adequará à posição dos pontos interativos
 # Executar
-google-chrome &lt;filename>.html
+google-chrome &lt;index.html
 ou
-firefox &lt;filename>.html
+firefox &lt;index.html
