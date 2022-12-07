@@ -52,7 +52,7 @@ def paredes(n,r,h):
         glVertex(x2,-h/2,z2)
         glEnd()
 
-def Prisma(n,r,h):
+def prisma(n,r,h):
     base(n,r,-h/2)
     base(n,r,h/2)
     paredes(n,r,h)
@@ -74,7 +74,7 @@ def cone(n,r,h):
         glVertex(x2,-h/2,z2)
         glEnd()
 
-def Piramide(n,r,h):
+def piramide(n,r,h):
     base(n,r,-h/2)
     cone(n,r,h)
 
@@ -86,14 +86,14 @@ def desenhaPiramidePrisma(n,r,h):
     glTranslatef(-5,0,0)
     glRotatef(a,0,1,0)
     glRotatef(a,0,0,1)
-    Piramide(n,r,h)
+    piramide(n,r,h)
     glPopMatrix()
     # Prisma da Direita
     glPushMatrix()
     glTranslatef(5,0,0)
     glRotatef(-a,1,0,0)
     glRotatef(-a,0,1,0)
-    Prisma(n,r,h)
+    prisma(n,r,h)
     glPopMatrix()
 
 
