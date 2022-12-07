@@ -5,6 +5,6 @@ Como usar:
 
 -O polígono rotaciona em direção ao mouse na tela
 # Executar
-google-chrome &lt;filename>.html
+google-chrome &lt;index.html
 ou
-firefox &lt;filename>.html
+firefox &lt;index.html
