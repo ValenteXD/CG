@@ -131,6 +131,40 @@ class SquareWithTextureApp(GLAPP):
             normal = array('f',[
                 0.0,0.0,1.0,
                 0.0,0.0,1.0,
+                0.0,0.0,1.0,
+                0.0,0.0,1.0,
+                0.0,0.0,1.0,
+                0.0,0.0,1.0,
+                1.0,0.0,0.0,
+                1.0,0.0,0.0,
+                1.0,0.0,0.0,
+                1.0,0.0,0.0,
+                1.0,0.0,0.0,
+                1.0,0.0,0.0,
+                0.0,0.0,-1.0,
+                0.0,0.0,-1.0,
+                0.0,0.0,-1.0,
+                0.0,0.0,-1.0,
+                0.0,0.0,-1.0,
+                0.0,0.0,-1.0,
+                -1.0,0.0,0.0,
+                -1.0,0.0,0.0,
+                -1.0,0.0,0.0,
+                -1.0,0.0,0.0,
+                -1.0,0.0,0.0,
+                -1.0,0.0,0.0,
+                0.0,1.0,0.0,
+                0.0,1.0,0.0,
+                0.0,1.0,0.0,
+                0.0,1.0,0.0,
+                0.0,1.0,0.0,
+                0.0,1.0,0.0,
+                0.0,-1.0,0.0,
+                0.0,-1.0,0.0,
+                0.0,-1.0,0.0,
+                0.0,-1.0,0.0,
+                0.0,-1.0,0.0,
+                0.0,-1.0,0.0
             ])
 
             self.squareArrayBufferId = GL.glGenVertexArrays(1)
@@ -150,7 +184,7 @@ class SquareWithTextureApp(GLAPP):
             GL.glVertexAttribPointer(1,2,GL.GL_FLOAT,GL.GL_FALSE,0,ctypes.c_void_p(0))
 
             idNormalBuffer = GL.glGenBuffers(1)
-            GL.glBindBuffer(GL.GL_ARRAY_BUFFER, idVertexBuffer)
+            GL.glBindBuffer(GL.GL_ARRAY_BUFFER, idNormalBuffer)
             GL.glBufferData(GL.GL_ARRAY_BUFFER, len(normal)*normal.itemsize, ctypes.c_void_p(normal.buffer_info()[0]), GL.GL_STATIC_DRAW)
             GL.glVertexAttribPointer(1,3,GL.GL_FLOAT,GL.GL_FALSE,0,ctypes.c_void_p(0))
 
@@ -159,7 +193,9 @@ class SquareWithTextureApp(GLAPP):
         camera = glm.lookAt(glm.vec3(0,0,6),glm.vec3(0,0,0),glm.vec3(0,1,0))
         model = glm.rotate(a,glm.vec3(0,1,0))*glm.rotate(math.pi/4,glm.vec3(0,0,1))*glm.rotate(math.pi/4,glm.vec3(1,0,0))#*glm.rotate(a,glm.vec3(0,1,0))*glm.rotate(a,glm.vec3(0,0,1))
         mvp = projection * camera * model
+        normalMatrix = glm.transpose(glm.inverse(glm.mat3(camera*model)))
         GL.glUniformMatrix4fv(GL.glGetUniformLocation(self.pipeline, "MVP"),1,GL.GL_FALSE,glm.value_ptr(mvp))
+        GL.glUniformMatrix3fv(GL.glGetUniformLocation(self.pipeline, "normalMatrix"),1,GL.GL_FALSE,glm.value_ptr(normalMatrix))
         GL.glBindVertexArray(self.squareArrayBufferId)
         GL.glDrawArrays(GL.GL_TRIANGLES,0,36)
 
