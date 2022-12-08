@@ -5,7 +5,7 @@ import ctypes
 import glm
 import math
 
-class SquareWithTextureApp(GLAPP):
+class CuboWithTextureAndLightApp(GLAPP):
 
     def setup(self):
         global a
@@ -171,7 +171,7 @@ class SquareWithTextureApp(GLAPP):
             GL.glBindVertexArray(self.squareArrayBufferId)
             GL.glEnableVertexAttribArray(0)
             GL.glEnableVertexAttribArray(1)
-            GL.glEnableVertexAttribArray(2)
+            #GL.glEnableVertexAttribArray(2)
             
             idVertexBuffer = GL.glGenBuffers(1)
             GL.glBindBuffer(GL.GL_ARRAY_BUFFER, idVertexBuffer)
@@ -208,4 +208,4 @@ class SquareWithTextureApp(GLAPP):
         self.drawDado()
         a+=0.01
 
-SquareWithTextureApp()
+CuboWithTextureAndLightApp()
