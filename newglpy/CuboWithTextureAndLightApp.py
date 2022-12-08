@@ -171,7 +171,7 @@ class CuboWithTextureAndLightApp(GLAPP):
             GL.glBindVertexArray(self.squareArrayBufferId)
             GL.glEnableVertexAttribArray(0)
             GL.glEnableVertexAttribArray(1)
-            #GL.glEnableVertexAttribArray(2)
+            GL.glEnableVertexAttribArray(2)
             
             idVertexBuffer = GL.glGenBuffers(1)
             GL.glBindBuffer(GL.GL_ARRAY_BUFFER, idVertexBuffer)
@@ -186,11 +186,11 @@ class CuboWithTextureAndLightApp(GLAPP):
             idNormalBuffer = GL.glGenBuffers(1)
             GL.glBindBuffer(GL.GL_ARRAY_BUFFER, idNormalBuffer)
             GL.glBufferData(GL.GL_ARRAY_BUFFER, len(normal)*normal.itemsize, ctypes.c_void_p(normal.buffer_info()[0]), GL.GL_STATIC_DRAW)
-            GL.glVertexAttribPointer(1,3,GL.GL_FLOAT,GL.GL_FALSE,0,ctypes.c_void_p(0))
+            GL.glVertexAttribPointer(2,3,GL.GL_FLOAT,GL.GL_FALSE,0,ctypes.c_void_p(0))
 
         
         projection = glm.perspective(math.pi/4,self.width/self.height,0.1,100)
-        camera = glm.lookAt(glm.vec3(0,0,6),glm.vec3(0,0,0),glm.vec3(0,1,0))
+        camera = glm.lookAt(glm.vec3(6,0,6),glm.vec3(0,0,0),glm.vec3(0,1,0))
         model = glm.rotate(a,glm.vec3(0,1,0))*glm.rotate(math.pi/4,glm.vec3(0,0,1))*glm.rotate(math.pi/4,glm.vec3(1,0,0))#*glm.rotate(a,glm.vec3(0,1,0))*glm.rotate(a,glm.vec3(0,0,1))
         mvp = projection * camera * model
         normalMatrix = glm.transpose(glm.inverse(glm.mat3(camera*model)))
@@ -206,6 +206,6 @@ class CuboWithTextureAndLightApp(GLAPP):
 
         # Draw a Triangle
         self.drawDado()
-        a+=0.01
+        a+=math.pi*self.frameTime
 
 CuboWithTextureAndLightApp()
