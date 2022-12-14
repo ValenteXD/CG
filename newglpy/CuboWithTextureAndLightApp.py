@@ -12,6 +12,7 @@ class CuboWithTextureAndLightApp(GLAPP):
         # Window setup
         self.title("Cube With Texture And Light")
         self.size(800,800)
+        self.FPSlimit = 120
 
         # OpenGL Initialization
         GL.glClearColor(0.2, 0.2, 0.2, 0.0)
@@ -20,7 +21,7 @@ class CuboWithTextureAndLightApp(GLAPP):
         GL.glEnable(GL.GL_CULL_FACE)
 
         # Pipeline (shaders)
-        self.pipeline = self.loadPipeline("LightShader")
+        self.pipeline = self.loadPipeline("Phong")#"LightShader")
         GL.glUseProgram(self.pipeline)
 
         # Texture
