@@ -10,7 +10,7 @@ out vec2 textureCoord;
 
 void main(void) 
 {
-    vec3 lightDir = normalize(vec3(0.0,0.0,1.0));
+    vec3 lightDir = normalize(vec3(2.0,0.0,1.0));
     vec3 Vnormal = normalMatrix*normal;
     intensity = dot(lightDir,normalize(Vnormal));
     gl_Position = MVP * vec4(attr_position,1.0);
