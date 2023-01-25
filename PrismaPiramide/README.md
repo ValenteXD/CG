@@ -1,14 +1,14 @@
 # Prisma e Pirâmide
-Como usar:
+###Como usar:
 
 -Modifique os valores da passados para a função desenhaPiramidePrisma n==número de lados; r==raio da base; h==altura
 
-Dependências:
+###Dependências:
 
 PyOpenGL
 
 PySDL2
 
 pysdl2-dll
-# Executar
+##Executar
 python3 ./prisma-piramide.py
